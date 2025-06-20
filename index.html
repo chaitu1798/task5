@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">WebStore</a>
+      <nav class="nav" style="display: flex; justify-content: flex-end; align-items: center; gap: 18px;">
+        <button id="search-toggle" class="icon-btn" title="Search"><span>🔍</span></button>
+        <a href="index.html" class="icon-btn" title="Home">🏠</a>
+        <a href="wishlist.html" id="wishlist-link" class="icon-btn" title="Wishlist">❤️</a>
+        <a href="cart.html" id="cart-link" class="icon-btn" title="Cart">🛒<span id="cart-count">0</span></a>
+        <input type="text" id="header-search-bar" class="header-search-bar" placeholder="Search for products..." style="display:none;">
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="filters">
+      <div id="category-filters">
+        <!-- Category buttons will be dynamically inserted here -->
+      </div>
+    </div>
+
+    <h1>Our Products</h1>
+    <div id="product-grid" class="product-grid">
+      <!-- Products will be dynamically inserted here -->
+    </div>
+  </main>
+  
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html> 

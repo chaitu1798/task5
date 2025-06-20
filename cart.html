@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">WebStore</a>
+      <nav class="nav">
+        <button class="icon-btn" id="back-btn" title="Go Back" onclick="window.history.back()">←</button>
+        <button id="search-toggle" class="icon-btn" title="Search"><span>🔍</span></button>
+        <a href="index.html" class="icon-btn" title="Home">🏠</a>
+        <a href="wishlist.html" id="wishlist-link" class="icon-btn" title="Wishlist">❤️</a>
+        <a href="cart.html" id="cart-link" class="icon-btn" title="Cart">🛒<span id="cart-count">0</span></a>
+        <input type="text" id="header-search-bar" class="header-search-bar" placeholder="Search for products..." style="display:none;">
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Your Cart</h1>
+    <div id="cart-items">
+      <!-- Cart items will be dynamically inserted here -->
+    </div>
+    <div id="cart-total" class="cart-total">
+      <!-- Cart total will be dynamically inserted here -->
+    </div>
+    <div class="checkout-btn-row">
+      <button id="proceed-checkout-btn" class="proceed-btn" title="Proceed to Checkout">Proceed to Checkout</button>
+    </div>
+  </main>
+  
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html> 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">WebStore</a>
+      <nav class="nav" style="display: flex; justify-content: flex-end; align-items: center; gap: 18px; position: relative;">
+        <button class="icon-btn" id="back-btn" title="Go Back" onclick="window.history.back()">←</button>
+        <button id="search-toggle" class="icon-btn" title="Search"><span>🔍</span></button>
+        <a href="index.html" class="icon-btn" title="Home">🏠</a>
+        <a href="wishlist.html" id="wishlist-link" class="icon-btn" title="Wishlist">❤️</a>
+        <a href="cart.html" id="cart-link" class="icon-btn" title="Cart">🛒<span id="cart-count">0</span></a>
+        <input type="text" id="header-search-bar" class="header-search-bar" placeholder="Search for products..." style="display:none;">
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Thank You for Your Order!</h1>
+    <div id="order-summary"></div>
+    <a href="index.html" class="btn">Back to Home</a>
+  </main>
+  
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    updateWishlistCount();
+    renderOrderSummary();
+  });
+  function renderOrderSummary() {
+    const summaryDiv = document.getElementById('order-summary');
+    const order = JSON.parse(localStorage.getItem('orderDetails'));
+    if (!order) {
+      summaryDiv.innerHTML = '<p>No order details found.</p>';
+      return;
+    }
+    let itemsHtml = '';
+    order.cart.forEach(item => {
+      itemsHtml += `<li>${item.name} × ${item.quantity} <span style='float:right;'>₹${(item.price * item.quantity).toFixed(2)}</span></li>`;
+    });
+    summaryDiv.innerHTML = `
+      <h2>Order Summary</h2>
+      <p><strong>Name:</strong> ${order.name}</p>
+      <p><strong>Email:</strong> ${order.email}</p>
+      <p><strong>Address:</strong> ${order.address}</p>
+      <p><strong>Payment Method:</strong> ${formatPayment(order.paymentMethod)}</p>
+      <p><strong>Coupon Code:</strong> ${order.couponCode || '-'}</p>
+      <ul style='list-style:none;padding:0;'>${itemsHtml}</ul>
+      <p><strong>Subtotal:</strong> ₹${order.total.toFixed(2)}</p>
+      <p><strong>Discount:</strong> -₹${order.discount.toFixed(2)}</p>
+      <p style='font-size:1.2rem;'><strong>Total Paid:</strong> ₹${order.discountedTotal.toFixed(2)}</p>
+    `;
+  }
+  function formatPayment(method) {
+    switch(method) {
+      case 'cod': return 'Cash on Delivery';
+      case 'card': return 'Card';
+      case 'upi': return 'UPI';
+      case 'paypal': return 'PayPal';
+      default: return method;
+    }
+  }
+  </script>
+
+</body>
+</html> 

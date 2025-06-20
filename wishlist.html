@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">WebStore</a>
+      <nav class="nav">
+        <button class="icon-btn" id="back-btn" title="Go Back" onclick="window.history.back()">←</button>
+        <button id="search-toggle" class="icon-btn" title="Search"><span>🔍</span></button>
+        <a href="index.html" class="icon-btn" title="Home">🏠</a>
+        <a href="wishlist.html" id="wishlist-link" class="icon-btn" title="Wishlist">❤️<span id="wishlist-count">0</span></a>
+        <a href="cart.html" id="cart-link" class="icon-btn" title="Cart">🛒<span id="cart-count">0</span></a>
+        <input type="text" id="header-search-bar" class="header-search-bar" placeholder="Search for products..." style="display:none;">
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h1>Your Wishlist</h1>
+    <div id="wishlist-items" class="product-grid"></div>
+  </main>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      updateWishlistCount();
+      renderWishlistItems();
+    });
+    function renderWishlistItems() {
+      const wishlist = getWishlist();
+      const wishlistItemsContainer = document.getElementById('wishlist-items');
+      if (!wishlistItemsContainer) return;
+      if (wishlist.length === 0) {
+        wishlistItemsContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+        return;
+      }
+      wishlistItemsContainer.innerHTML = '';
+      wishlist.forEach(productId => {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p class="price">₹${product.price.toFixed(2)}</p>
+          </a>
+          <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
+          <button class="btn wishlist-btn" onclick="removeFromWishlist(${product.id})">Remove from Wishlist</button>
+        `;
+        wishlistItemsContainer.appendChild(productCard);
+      });
+    }
+  </script>
+</body>
+</html> 

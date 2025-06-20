@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">WebStore</a>
+      <nav class="nav">
+        <button class="icon-btn" id="back-btn" title="Go Back" onclick="window.history.back()">←</button>
+        <button id="search-toggle" class="icon-btn" title="Search"><span>🔍</span></button>
+        <a href="index.html" class="icon-btn" title="Home">🏠</a>
+        <a href="wishlist.html" id="wishlist-link" class="icon-btn" title="Wishlist">❤️</a>
+        <a href="cart.html" id="cart-link" class="icon-btn" title="Cart">🛒<span id="cart-count">0</span></a>
+        <input type="text" id="header-search-bar" class="header-search-bar" placeholder="Search for products..." style="display:none;">
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="checkout-card">
+      <h1 style="text-align:center;">Checkout</h1>
+      <form id="checkout-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;"></textarea>
+        <label>Payment Method</label>
+        <div style="margin-bottom:12px;">
+          <label><input type="radio" name="payment" value="cod" checked> Cash on Delivery</label><br>
+          <label><input type="radio" name="payment" value="card"> Card</label><br>
+          <label><input type="radio" name="payment" value="upi"> UPI</label><br>
+          <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+        </div>
+        <label for="coupon">Coupon Code</label>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code" style="flex:1;padding:8px;border-radius:6px;border:1px solid #ccc;">
+          <button type="button" class="icon-btn" id="apply-coupon" title="Apply Coupon">🏷️</button>
+        </div>
+        <div id="coupon-feedback" style="margin:8px 0 12px 0;color:#e67e22;"></div>
+        <button class="proceed-btn" type="submit">Place Order</button>
+      </form>
+    </div>
+  </main>
+  
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html> 
